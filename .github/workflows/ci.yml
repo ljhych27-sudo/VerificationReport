@@ -75,7 +75,7 @@ jobs:
         run: >
           python -m verreport --demo -o report
           --summary-md summary.md
-          --report-url "${REPORT_URL%/}/"
+          --report-url "$REPORT_URL"
 
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
