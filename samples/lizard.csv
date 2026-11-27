@@ -1,0 +1,75 @@
+NLOC,CCN,token,PARAM,length,location,file,function,long_name,start,end
+92,3,552,3,116,scheduler_init@10-125@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_init,"scheduler_init( int a0, int a1, int a2 )",10,125
+36,2,216,4,45,scheduler_process@129-173@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_process,"scheduler_process( int a0, int a1, int a2, int a3 )",129,173
+6,17,36,2,8,scheduler_handle@177-184@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_handle,"scheduler_handle( int a0, int a1 )",177,184
+28,17,168,4,35,scheduler_update@188-222@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_update,"scheduler_update( int a0, int a1, int a2, int a3 )",188,222
+36,4,216,4,45,scheduler_check@226-270@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_check,"scheduler_check( int a0, int a1, int a2, int a3 )",226,270
+16,1,96,0,20,scheduler_parse@274-293@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_parse,scheduler_parse(  ),274,293
+9,6,54,4,12,scheduler_send@297-308@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_send,"scheduler_send( int a0, int a1, int a2, int a3 )",297,308
+9,6,54,2,12,scheduler_reset@312-323@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_reset,"scheduler_reset( int a0, int a1 )",312,323
+103,22,618,0,129,scheduler_get@327-455@C:/build/demo/src/core/scheduler.c,C:/build/demo/src/core/scheduler.c,scheduler_get,scheduler_get(  ),327,455
+6,2,36,1,8,task_init@10-17@C:/build/demo/src/core/task.c,C:/build/demo/src/core/task.c,task_init,task_init( int a0 ),10,17
+20,20,120,2,25,task_process@21-45@C:/build/demo/src/core/task.c,C:/build/demo/src/core/task.c,task_process,"task_process( int a0, int a1 )",21,45
+28,6,168,0,35,task_handle@49-83@C:/build/demo/src/core/task.c,C:/build/demo/src/core/task.c,task_handle,task_handle(  ),49,83
+36,18,216,0,45,task_update@87-131@C:/build/demo/src/core/task.c,C:/build/demo/src/core/task.c,task_update,task_update(  ),87,131
+6,2,36,4,8,task_check@135-142@C:/build/demo/src/core/task.c,C:/build/demo/src/core/task.c,task_check,"task_check( int a0, int a1, int a2, int a3 )",135,142
+20,6,120,1,25,task_parse@146-170@C:/build/demo/src/core/task.c,C:/build/demo/src/core/task.c,task_parse,task_parse( int a0 ),146,170
+16,5,96,2,20,task_send@174-193@C:/build/demo/src/core/task.c,C:/build/demo/src/core/task.c,task_send,"task_send( int a0, int a1 )",174,193
+36,3,216,2,45,task_reset@197-241@C:/build/demo/src/core/task.c,C:/build/demo/src/core/task.c,task_reset,"task_reset( int a0, int a1 )",197,241
+9,5,54,4,12,timer_init@10-21@C:/build/demo/src/core/timer.c,C:/build/demo/src/core/timer.c,timer_init,"timer_init( int a0, int a1, int a2, int a3 )",10,21
+36,4,216,1,45,timer_process@25-69@C:/build/demo/src/core/timer.c,C:/build/demo/src/core/timer.c,timer_process,timer_process( int a0 ),25,69
+48,1,288,2,60,timer_handle@73-132@C:/build/demo/src/core/timer.c,C:/build/demo/src/core/timer.c,timer_handle,"timer_handle( int a0, int a1 )",73,132
+6,7,36,1,8,timer_update@136-143@C:/build/demo/src/core/timer.c,C:/build/demo/src/core/timer.c,timer_update,timer_update( int a0 ),136,143
+9,6,54,2,12,timer_check@147-158@C:/build/demo/src/core/timer.c,C:/build/demo/src/core/timer.c,timer_check,"timer_check( int a0, int a1 )",147,158
+20,8,120,4,25,timer_parse@162-186@C:/build/demo/src/core/timer.c,C:/build/demo/src/core/timer.c,timer_parse,"timer_parse( int a0, int a1, int a2, int a3 )",162,186
+9,5,54,3,12,timer_send@190-201@C:/build/demo/src/core/timer.c,C:/build/demo/src/core/timer.c,timer_send,"timer_send( int a0, int a1, int a2 )",190,201
+20,7,120,2,25,timer_reset@205-229@C:/build/demo/src/core/timer.c,C:/build/demo/src/core/timer.c,timer_reset,"timer_reset( int a0, int a1 )",205,229
+9,2,54,0,12,can_init@10-21@C:/build/demo/src/comm/can.c,C:/build/demo/src/comm/can.c,can_init,can_init(  ),10,21
+48,16,288,0,60,can_process@25-84@C:/build/demo/src/comm/can.c,C:/build/demo/src/comm/can.c,can_process,can_process(  ),25,84
+20,7,120,3,25,can_handle@88-112@C:/build/demo/src/comm/can.c,C:/build/demo/src/comm/can.c,can_handle,"can_handle( int a0, int a1, int a2 )",88,112
+20,1,120,2,25,can_update@116-140@C:/build/demo/src/comm/can.c,C:/build/demo/src/comm/can.c,can_update,"can_update( int a0, int a1 )",116,140
+6,5,36,0,8,can_check@144-151@C:/build/demo/src/comm/can.c,C:/build/demo/src/comm/can.c,can_check,can_check(  ),144,151
+16,24,96,0,20,can_parse@155-174@C:/build/demo/src/comm/can.c,C:/build/demo/src/comm/can.c,can_parse,can_parse(  ),155,174
+36,5,216,2,45,uart_init@10-54@C:/build/demo/src/comm/uart.c,C:/build/demo/src/comm/uart.c,uart_init,"uart_init( int a0, int a1 )",10,54
+48,2,288,1,60,uart_process@58-117@C:/build/demo/src/comm/uart.c,C:/build/demo/src/comm/uart.c,uart_process,uart_process( int a0 ),58,117
+16,4,96,2,20,uart_handle@121-140@C:/build/demo/src/comm/uart.c,C:/build/demo/src/comm/uart.c,uart_handle,"uart_handle( int a0, int a1 )",121,140
+48,1,288,1,60,uart_update@144-203@C:/build/demo/src/comm/uart.c,C:/build/demo/src/comm/uart.c,uart_update,uart_update( int a0 ),144,203
+20,22,120,3,25,uart_check@207-231@C:/build/demo/src/comm/uart.c,C:/build/demo/src/comm/uart.c,uart_check,"uart_check( int a0, int a1, int a2 )",207,231
+9,2,54,4,12,protocol_init@10-21@C:/build/demo/src/comm/protocol.c,C:/build/demo/src/comm/protocol.c,protocol_init,"protocol_init( int a0, int a1, int a2, int a3 )",10,21
+114,3,684,3,143,protocol_process@25-167@C:/build/demo/src/comm/protocol.c,C:/build/demo/src/comm/protocol.c,protocol_process,"protocol_process( int a0, int a1, int a2 )",25,167
+20,3,120,4,25,protocol_handle@171-195@C:/build/demo/src/comm/protocol.c,C:/build/demo/src/comm/protocol.c,protocol_handle,"protocol_handle( int a0, int a1, int a2, int a3 )",171,195
+48,4,288,0,60,protocol_update@199-258@C:/build/demo/src/comm/protocol.c,C:/build/demo/src/comm/protocol.c,protocol_update,protocol_update(  ),199,258
+48,4,288,0,60,protocol_check@262-321@C:/build/demo/src/comm/protocol.c,C:/build/demo/src/comm/protocol.c,protocol_check,protocol_check(  ),262,321
+20,6,120,0,25,protocol_parse@325-349@C:/build/demo/src/comm/protocol.c,C:/build/demo/src/comm/protocol.c,protocol_parse,protocol_parse(  ),325,349
+20,18,120,1,25,dtc_init@10-34@C:/build/demo/src/diag/dtc.c,C:/build/demo/src/diag/dtc.c,dtc_init,dtc_init( int a0 ),10,34
+66,4,396,4,83,dtc_process@38-120@C:/build/demo/src/diag/dtc.c,C:/build/demo/src/diag/dtc.c,dtc_process,"dtc_process( int a0, int a1, int a2, int a3 )",38,120
+6,12,36,0,8,dtc_handle@124-131@C:/build/demo/src/diag/dtc.c,C:/build/demo/src/diag/dtc.c,dtc_handle,dtc_handle(  ),124,131
+6,2,36,2,8,dtc_update@135-142@C:/build/demo/src/diag/dtc.c,C:/build/demo/src/diag/dtc.c,dtc_update,"dtc_update( int a0, int a1 )",135,142
+16,4,96,4,20,dtc_check@146-165@C:/build/demo/src/diag/dtc.c,C:/build/demo/src/diag/dtc.c,dtc_check,"dtc_check( int a0, int a1, int a2, int a3 )",146,165
+36,8,216,4,45,dtc_parse@169-213@C:/build/demo/src/diag/dtc.c,C:/build/demo/src/diag/dtc.c,dtc_parse,"dtc_parse( int a0, int a1, int a2, int a3 )",169,213
+20,4,120,1,25,dtc_send@217-241@C:/build/demo/src/diag/dtc.c,C:/build/demo/src/diag/dtc.c,dtc_send,dtc_send( int a0 ),217,241
+108,7,648,3,136,uds_init@10-145@C:/build/demo/src/diag/uds.c,C:/build/demo/src/diag/uds.c,uds_init,"uds_init( int a0, int a1, int a2 )",10,145
+36,14,216,1,45,uds_process@149-193@C:/build/demo/src/diag/uds.c,C:/build/demo/src/diag/uds.c,uds_process,uds_process( int a0 ),149,193
+99,2,594,0,124,uds_handle@197-320@C:/build/demo/src/diag/uds.c,C:/build/demo/src/diag/uds.c,uds_handle,uds_handle(  ),197,320
+9,3,54,2,12,uds_update@324-335@C:/build/demo/src/diag/uds.c,C:/build/demo/src/diag/uds.c,uds_update,"uds_update( int a0, int a1 )",324,335
+20,2,120,2,25,crc_init@10-34@C:/build/demo/src/util/crc.c,C:/build/demo/src/util/crc.c,crc_init,"crc_init( int a0, int a1 )",10,34
+48,2,288,0,60,crc_process@38-97@C:/build/demo/src/util/crc.c,C:/build/demo/src/util/crc.c,crc_process,crc_process(  ),38,97
+120,2,720,2,150,crc_handle@101-250@C:/build/demo/src/util/crc.c,C:/build/demo/src/util/crc.c,crc_handle,"crc_handle( int a0, int a1 )",101,250
+48,7,288,1,60,crc_update@254-313@C:/build/demo/src/util/crc.c,C:/build/demo/src/util/crc.c,crc_update,crc_update( int a0 ),254,313
+9,1,54,1,12,crc_check@317-328@C:/build/demo/src/util/crc.c,C:/build/demo/src/util/crc.c,crc_check,crc_check( int a0 ),317,328
+6,5,36,0,8,crc_parse@332-339@C:/build/demo/src/util/crc.c,C:/build/demo/src/util/crc.c,crc_parse,crc_parse(  ),332,339
+48,7,288,2,60,crc_send@343-402@C:/build/demo/src/util/crc.c,C:/build/demo/src/util/crc.c,crc_send,"crc_send( int a0, int a1 )",343,402
+48,8,288,4,60,ringbuf_init@10-69@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_init,"ringbuf_init( int a0, int a1, int a2, int a3 )",10,69
+16,1,96,3,20,ringbuf_process@73-92@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_process,"ringbuf_process( int a0, int a1, int a2 )",73,92
+28,21,168,4,35,ringbuf_handle@96-130@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_handle,"ringbuf_handle( int a0, int a1, int a2, int a3 )",96,130
+124,3,744,1,155,ringbuf_update@134-288@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_update,ringbuf_update( int a0 ),134,288
+116,16,696,1,146,ringbuf_check@292-437@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_check,ringbuf_check( int a0 ),292,437
+71,4,426,1,89,ringbuf_parse@441-529@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_parse,ringbuf_parse( int a0 ),441,529
+28,1,168,1,35,ringbuf_send@533-567@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_send,ringbuf_send( int a0 ),533,567
+20,6,120,3,25,ringbuf_reset@571-595@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_reset,"ringbuf_reset( int a0, int a1, int a2 )",571,595
+9,6,54,0,12,ringbuf_get@599-610@C:/build/demo/src/util/ringbuf.c,C:/build/demo/src/util/ringbuf.c,ringbuf_get,ringbuf_get(  ),599,610
+9,5,54,1,12,str_util_init@10-21@C:/build/demo/src/util/str_util.c,C:/build/demo/src/util/str_util.c,str_util_init,str_util_init( int a0 ),10,21
+48,1,288,2,60,str_util_process@25-84@C:/build/demo/src/util/str_util.c,C:/build/demo/src/util/str_util.c,str_util_process,"str_util_process( int a0, int a1 )",25,84
+28,2,168,3,35,str_util_handle@88-122@C:/build/demo/src/util/str_util.c,C:/build/demo/src/util/str_util.c,str_util_handle,"str_util_handle( int a0, int a1, int a2 )",88,122
+28,6,168,1,35,str_util_update@126-160@C:/build/demo/src/util/str_util.c,C:/build/demo/src/util/str_util.c,str_util_update,str_util_update( int a0 ),126,160
+9,3,54,2,12,str_util_check@164-175@C:/build/demo/src/util/str_util.c,C:/build/demo/src/util/str_util.c,str_util_check,"str_util_check( int a0, int a1 )",164,175

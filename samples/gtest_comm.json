@@ -1,0 +1,218 @@
+{
+ "tests": 0,
+ "testsuites": [
+  {
+   "name": "CanTest",
+   "tests": 7,
+   "testsuite": [
+    {
+     "name": "Case01",
+     "file": "C:/build/demo/test/comm/can_test.cpp",
+     "line": 30,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.030s",
+     "classname": "CanTest"
+    },
+    {
+     "name": "Case02",
+     "file": "C:/build/demo/test/comm/can_test.cpp",
+     "line": 42,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.030s",
+     "classname": "CanTest"
+    },
+    {
+     "name": "Case03",
+     "file": "C:/build/demo/test/comm/can_test.cpp",
+     "line": 54,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.016s",
+     "classname": "CanTest"
+    },
+    {
+     "name": "Case04",
+     "file": "C:/build/demo/test/comm/can_test.cpp",
+     "line": 66,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.005s",
+     "classname": "CanTest"
+    },
+    {
+     "name": "Case05",
+     "file": "C:/build/demo/test/comm/can_test.cpp",
+     "line": 78,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.005s",
+     "classname": "CanTest"
+    },
+    {
+     "name": "Case06",
+     "file": "C:/build/demo/test/comm/can_test.cpp",
+     "line": 90,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.030s",
+     "classname": "CanTest"
+    },
+    {
+     "name": "Case07",
+     "file": "C:/build/demo/test/comm/can_test.cpp",
+     "line": 102,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.015s",
+     "classname": "CanTest"
+    }
+   ]
+  },
+  {
+   "name": "UartTest",
+   "tests": 7,
+   "testsuite": [
+    {
+     "name": "Case01",
+     "file": "C:/build/demo/test/comm/uart_test.cpp",
+     "line": 30,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.024s",
+     "classname": "UartTest"
+    },
+    {
+     "name": "Case02",
+     "file": "C:/build/demo/test/comm/uart_test.cpp",
+     "line": 42,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.003s",
+     "classname": "UartTest"
+    },
+    {
+     "name": "Case03",
+     "file": "C:/build/demo/test/comm/uart_test.cpp",
+     "line": 54,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.022s",
+     "classname": "UartTest"
+    },
+    {
+     "name": "Case04",
+     "file": "C:/build/demo/test/comm/uart_test.cpp",
+     "line": 66,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.025s",
+     "classname": "UartTest",
+     "failures": [
+      {
+       "failure": "protocol_test.cpp:88\nValue of: rx_ok\n  Actual: false\nExpected: true",
+       "type": ""
+      }
+     ]
+    },
+    {
+     "name": "Case05",
+     "file": "C:/build/demo/test/comm/uart_test.cpp",
+     "line": 78,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.019s",
+     "classname": "UartTest"
+    },
+    {
+     "name": "Case06",
+     "file": "C:/build/demo/test/comm/uart_test.cpp",
+     "line": 90,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.010s",
+     "classname": "UartTest"
+    },
+    {
+     "name": "Case07",
+     "file": "C:/build/demo/test/comm/uart_test.cpp",
+     "line": 102,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.019s",
+     "classname": "UartTest"
+    }
+   ]
+  },
+  {
+   "name": "ProtocolTest",
+   "tests": 7,
+   "testsuite": [
+    {
+     "name": "Case01",
+     "file": "C:/build/demo/test/comm/protocol_test.cpp",
+     "line": 30,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.015s",
+     "classname": "ProtocolTest"
+    },
+    {
+     "name": "Case02",
+     "file": "C:/build/demo/test/comm/protocol_test.cpp",
+     "line": 42,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.016s",
+     "classname": "ProtocolTest"
+    },
+    {
+     "name": "Case03",
+     "file": "C:/build/demo/test/comm/protocol_test.cpp",
+     "line": 54,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.028s",
+     "classname": "ProtocolTest"
+    },
+    {
+     "name": "Case04",
+     "file": "C:/build/demo/test/comm/protocol_test.cpp",
+     "line": 66,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.016s",
+     "classname": "ProtocolTest"
+    },
+    {
+     "name": "Case05",
+     "file": "C:/build/demo/test/comm/protocol_test.cpp",
+     "line": 78,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.006s",
+     "classname": "ProtocolTest"
+    },
+    {
+     "name": "Case06",
+     "file": "C:/build/demo/test/comm/protocol_test.cpp",
+     "line": 90,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.019s",
+     "classname": "ProtocolTest"
+    },
+    {
+     "name": "Case07",
+     "file": "C:/build/demo/test/comm/protocol_test.cpp",
+     "line": 102,
+     "status": "RUN",
+     "result": "COMPLETED",
+     "time": "0.019s",
+     "classname": "ProtocolTest"
+    }
+   ]
+  }
+ ]
+}

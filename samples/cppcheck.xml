@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="2.14.0"/>
+    <errors>
+        <error id="invalidPointerCast" severity="portability" msg="Casting from float * to int * is not portable" verbose="Casting from float * to int * is not portable" cwe="704" file0="C:/build/demo/src/core/scheduler.c">
+            <location file="C:/build/demo/src/core/scheduler.c" line="299" column="5"/>
+        </error>
+        <error id="shiftTooManyBits" severity="warning" msg="Shifting 32-bit value by 32 bits is undefined behaviour" verbose="Shifting 32-bit value by 32 bits is undefined behaviour" cwe="758" file0="C:/build/demo/src/core/scheduler.c">
+            <location file="C:/build/demo/src/core/scheduler.c" line="181" column="5"/>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference: p" verbose="Null pointer dereference: p" cwe="476" file0="C:/build/demo/src/core/scheduler.c">
+            <location file="C:/build/demo/src/core/scheduler.c" line="317" column="5"/>
+        </error>
+        <error id="invalidPointerCast" severity="portability" msg="Casting from float * to int * is not portable" verbose="Casting from float * to int * is not portable" cwe="704" file0="C:/build/demo/src/core/scheduler.c">
+            <location file="C:/build/demo/src/core/scheduler.c" line="162" column="5"/>
+        </error>
+        <error id="arrayIndexOutOfBounds" severity="error" msg="Array 'buf[16]' accessed at index 16, which is out of bounds." verbose="Array 'buf[16]' accessed at index 16, which is out of bounds." cwe="788" file0="C:/build/demo/src/core/task.c">
+            <location file="C:/build/demo/src/core/task.c" line="136" column="5"/>
+        </error>
+        <error id="uninitvar" severity="warning" msg="Uninitialized variable: len" verbose="Uninitialized variable: len" cwe="457" file0="C:/build/demo/src/core/task.c">
+            <location file="C:/build/demo/src/core/task.c" line="142" column="5"/>
+        </error>
+        <error id="invalidPointerCast" severity="portability" msg="Casting from float * to int * is not portable" verbose="Casting from float * to int * is not portable" cwe="704" file0="C:/build/demo/src/core/task.c">
+            <location file="C:/build/demo/src/core/task.c" line="76" column="5"/>
+        </error>
+        <error id="arrayIndexOutOfBounds" severity="error" msg="Array 'buf[16]' accessed at index 16, which is out of bounds." verbose="Array 'buf[16]' accessed at index 16, which is out of bounds." cwe="788" file0="C:/build/demo/src/core/task.c">
+            <location file="C:/build/demo/src/core/task.c" line="115" column="5"/>
+        </error>
+        <error id="constParameter" severity="style" msg="Parameter 'cfg' can be declared as pointer to const" verbose="Parameter 'cfg' can be declared as pointer to const" cwe="398" file0="C:/build/demo/src/core/task.c">
+            <location file="C:/build/demo/src/core/task.c" line="16" column="5"/>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference: p" verbose="Null pointer dereference: p" cwe="476" file0="C:/build/demo/src/core/task.c">
+            <location file="C:/build/demo/src/core/task.c" line="190" column="5"/>
+        </error>
+        <error id="shiftTooManyBits" severity="warning" msg="Shifting 32-bit value by 32 bits is undefined behaviour" verbose="Shifting 32-bit value by 32 bits is undefined behaviour" cwe="758" file0="C:/build/demo/src/core/timer.c">
+            <location file="C:/build/demo/src/core/timer.c" line="191" column="5"/>
+        </error>
+        <error id="constParameter" severity="style" msg="Parameter 'cfg' can be declared as pointer to const" verbose="Parameter 'cfg' can be declared as pointer to const" cwe="398" file0="C:/build/demo/src/core/timer.c">
+            <location file="C:/build/demo/src/core/timer.c" line="136" column="5"/>
+        </error>
+        <error id="arrayIndexOutOfBounds" severity="error" msg="Array 'buf[16]' accessed at index 16, which is out of bounds." verbose="Array 'buf[16]' accessed at index 16, which is out of bounds." cwe="788" file0="C:/build/demo/src/comm/can.c">
+            <location file="C:/build/demo/src/comm/can.c" line="165" column="5"/>
+        </error>
+        <error id="uninitvar" severity="warning" msg="Uninitialized variable: len" verbose="Uninitialized variable: len" cwe="457" file0="C:/build/demo/src/comm/can.c">
+            <location file="C:/build/demo/src/comm/can.c" line="27" column="5"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter 'msg' should be passed by const reference." verbose="Function parameter 'msg' should be passed by const reference." cwe="398" file0="C:/build/demo/src/comm/uart.c">
+            <location file="C:/build/demo/src/comm/uart.c" line="106" column="5"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter 'msg' should be passed by const reference." verbose="Function parameter 'msg' should be passed by const reference." cwe="398" file0="C:/build/demo/src/comm/uart.c">
+            <location file="C:/build/demo/src/comm/uart.c" line="183" column="5"/>
+        </error>
+        <error id="shiftTooManyBits" severity="warning" msg="Shifting 32-bit value by 32 bits is undefined behaviour" verbose="Shifting 32-bit value by 32 bits is undefined behaviour" cwe="758" file0="C:/build/demo/src/util/crc.c">
+            <location file="C:/build/demo/src/util/crc.c" line="352" column="5"/>
+        </error>
+        <error id="invalidPointerCast" severity="portability" msg="Casting from float * to int * is not portable" verbose="Casting from float * to int * is not portable" cwe="704" file0="C:/build/demo/src/util/crc.c">
+            <location file="C:/build/demo/src/util/crc.c" line="338" column="5"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable 'i' can be reduced." verbose="The scope of the variable 'i' can be reduced." cwe="398" file0="C:/build/demo/src/util/str_util.c">
+            <location file="C:/build/demo/src/util/str_util.c" line="44" column="5"/>
+        </error>
+        <error id="arrayIndexOutOfBounds" severity="error" msg="Array 'buf[16]' accessed at index 16, which is out of bounds." verbose="Array 'buf[16]' accessed at index 16, which is out of bounds." cwe="788" file0="C:/build/demo/src/util/str_util.c">
+            <location file="C:/build/demo/src/util/str_util.c" line="13" column="5"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function 'debug_dump' is never used." verbose="The function 'debug_dump' is never used." cwe="561" file0="C:/build/demo/src/util/str_util.c">
+            <location file="C:/build/demo/src/util/str_util.c" line="171" column="5"/>
+        </error>
+        <error id="arrayIndexOutOfBounds" severity="error" msg="Array 'buf[16]' accessed at index 16, which is out of bounds." verbose="Array 'buf[16]' accessed at index 16, which is out of bounds." cwe="788" file0="C:/build/demo/src/util/str_util.c">
+            <location file="C:/build/demo/src/util/str_util.c" line="17" column="5"/>
+        </error>
+        <error id="invalidPointerCast" severity="portability" msg="Casting from float * to int * is not portable" verbose="Casting from float * to int * is not portable" cwe="704" file0="C:/build/demo/src/util/str_util.c">
+            <location file="C:/build/demo/src/util/str_util.c" line="20" column="5"/>
+        </error>
+        <error id="invalidPointerCast" severity="portability" msg="Casting from float * to int * is not portable" verbose="Casting from float * to int * is not portable" cwe="704" file0="C:/build/demo/src/util/str_util.c">
+            <location file="C:/build/demo/src/util/str_util.c" line="167" column="5"/>
+        </error>
+        <error id="missingIncludeSystem" severity="information" msg="Include file: &lt;stdint.h&gt; not found." verbose="Include file: &lt;stdint.h&gt; not found."/>
+    </errors>
+</results>
