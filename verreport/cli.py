@@ -13,7 +13,10 @@ from . import __version__
 from .parsers import gtest, llvmcov, cppcheck, lizard
 from .render import write_report
 
-SAMPLES = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "samples")
+def _samples_dir():
+    """소스 체크아웃의 samples/ (설치된 패키지로 실행 시 현재 디렉터리의 samples/)."""
+    src = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "samples")
+    return src if os.path.isdir(src) else os.path.abspath("samples")
 
 
 def build_parser():
@@ -41,9 +44,23 @@ def build_parser():
     return p
 
 
+def _safe_console():
+    """cp1252 등 한글을 표현 못 하는 콘솔/파이프(CI 등)에서 UnicodeEncodeError 로 죽지 않도록 한다."""
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(errors="replace")
+            except (ValueError, OSError):
+                pass
+
+
 def main(argv=None):
+    _safe_console()
     a = build_parser().parse_args(argv)
     if a.demo:
+        SAMPLES = _samples_dir()
+        if not os.path.isdir(SAMPLES):
+            build_parser().error(f"--demo: 예제 디렉터리를 찾을 수 없습니다: {SAMPLES}")
         a.gtest = a.gtest or [os.path.join(SAMPLES, "gtest_core.xml"), os.path.join(SAMPLES, "gtest_comm.json")]
         a.coverage = a.coverage or os.path.join(SAMPLES, "coverage.json")
         a.cppcheck = a.cppcheck or os.path.join(SAMPLES, "cppcheck.xml")

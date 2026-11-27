@@ -1,4 +1,6 @@
 import os
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -71,6 +73,15 @@ class EndToEndTest(unittest.TestCase):
     def test_fail_on_error_exit_code(self):
         with tempfile.TemporaryDirectory() as d:
             self.assertEqual(cli.main(["--demo", "-o", d, "--fail-on-error"]), 1)
+
+    def test_non_utf8_console(self):
+        """한글을 표현 못 하는 콘솔(cp1252)에서도 CLI 가 죽지 않아야 한다."""
+        root = os.path.dirname(SAMPLES)
+        env = dict(os.environ, PYTHONIOENCODING="cp1252", PYTHONUTF8="0")
+        with tempfile.TemporaryDirectory() as d:
+            r = subprocess.run([sys.executable, "-m", "verreport", "--demo", "-o", d],
+                               cwd=root, env=env, capture_output=True)
+            self.assertEqual(r.returncode, 0, r.stderr.decode("cp1252", "replace"))
 
     def test_single_tool_only(self):
         with tempfile.TemporaryDirectory() as d:

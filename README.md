@@ -1,10 +1,13 @@
 # VerificationReport (VERReport)
+
+[![CI](https://github.com/ljhych27-sudo/VerificationReport/actions/workflows/ci.yml/badge.svg)](https://github.com/ljhych27-sudo/VerificationReport/actions/workflows/ci.yml)
+
 테스트, 정적분석 등의 결과를 한 번에 보여준다.
 
 Google Test / VVLM(LLVM) 커버리지 / CPPCheck / Lizard 결과를 읽어
 **대시보드 + 도구별 상세 결과** HTML 리포트를 생성하는 파이썬 도구입니다.
 
-- 외부 패키지 의존성 없음 (Python 3.8+ 표준 라이브러리만 사용)
+- 외부 패키지 의존성 없음 (Python 3.10+ 표준 라이브러리만 사용)
 - 생성된 리포트는 정적 HTML이라 CI 아티팩트로 그대로 열람 가능 (인터넷 불필요)
 
 ## 리포트 구성
