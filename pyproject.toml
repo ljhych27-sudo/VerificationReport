@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "verreport"
 version = "1.0.0"
 description = "Google Test / LLVM 커버리지 / CPPCheck / Lizard 결과를 HTML 대시보드로 생성"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = []
 
 [project.scripts]
