@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="43" failures="4" disabled="0" errors="0" time="1.234" timestamp="2026-11-27T09:12:33" name="AllTests">
+  <testsuite name="SchedulerTest" tests="9" failures="1" disabled="0" skipped="0" errors="0" time="0.1">
+    <testcase name="Case01_Timeout" file="C:/build/demo/test/core/scheduler_test.cpp" line="20" status="run" result="completed" time="0.0" timestamp="2026-11-27T09:12:33" classname="SchedulerTest" />
+    <testcase name="Case02_Invalid" file="C:/build/demo/test/core/scheduler_test.cpp" line="35" status="run" result="completed" time="0.021" timestamp="2026-11-27T09:12:33" classname="SchedulerTest" />
+    <testcase name="Case03_Basic" file="C:/build/demo/test/core/scheduler_test.cpp" line="50" status="run" result="completed" time="0.026" timestamp="2026-11-27T09:12:33" classname="SchedulerTest" />
+    <testcase name="Case04_Invalid" file="C:/build/demo/test/core/scheduler_test.cpp" line="65" status="run" result="completed" time="0.027" timestamp="2026-11-27T09:12:33" classname="SchedulerTest" />
+    <testcase name="Case05_Invalid" file="C:/build/demo/test/core/scheduler_test.cpp" line="80" status="run" result="completed" time="0.028" timestamp="2026-11-27T09:12:33" classname="SchedulerTest" />
+    <testcase name="Case06_Timeout" file="C:/build/demo/test/core/scheduler_test.cpp" line="95" status="run" result="completed" time="0.002" timestamp="2026-11-27T09:12:33" classname="SchedulerTest" />
+    <testcase name="Case07_Overflow" file="C:/build/demo/test/core/scheduler_test.cpp" line="110" status="run" result="completed" time="0.013" timestamp="2026-11-27T09:12:33" classname="SchedulerTest" />
+    <testcase name="Case08_Basic" file="C:/build/demo/test/core/scheduler_test.cpp" line="125" status="run" result="completed" time="0.017" timestamp="2026-11-27T09:12:33" classname="SchedulerTest">
+      <failure message="C:/build/demo/test/core/scheduler_test.cpp:127&#10;Expected equality of these values:&#10;  expected&#10;    Which is: 16&#10;  actual&#10;    Which is: 15" type=""></failure>
+    </testcase>
+    <testcase name="Case09_Basic" file="C:/build/demo/test/core/scheduler_test.cpp" line="140" status="run" result="completed" time="0.039" timestamp="2026-11-27T09:12:33" classname="SchedulerTest" />
+  </testsuite>
+  <testsuite name="TimerTest" tests="9" failures="2" disabled="0" skipped="0" errors="0" time="0.1">
+    <testcase name="Case01_Boundary" file="C:/build/demo/test/core/timer_test.cpp" line="20" status="run" result="completed" time="0.002" timestamp="2026-11-27T09:12:33" classname="TimerTest" />
+    <testcase name="Case02_Boundary" file="C:/build/demo/test/core/timer_test.cpp" line="35" status="run" result="completed" time="0.042" timestamp="2026-11-27T09:12:33" classname="TimerTest" />
+    <testcase name="Case03_Timeout" file="C:/build/demo/test/core/timer_test.cpp" line="50" status="run" result="completed" time="0.032" timestamp="2026-11-27T09:12:33" classname="TimerTest" />
+    <testcase name="Case04_Basic" file="C:/build/demo/test/core/timer_test.cpp" line="65" status="run" result="completed" time="0.036" timestamp="2026-11-27T09:12:33" classname="TimerTest" />
+    <testcase name="Case05_Basic" file="C:/build/demo/test/core/timer_test.cpp" line="80" status="run" result="completed" time="0.015" timestamp="2026-11-27T09:12:33" classname="TimerTest" />
+    <testcase name="Case06_Boundary" file="C:/build/demo/test/core/timer_test.cpp" line="95" status="run" result="completed" time="0.044" timestamp="2026-11-27T09:12:33" classname="TimerTest">
+      <failure message="C:/build/demo/test/core/timer_test.cpp:97&#10;Expected equality of these values:&#10;  expected&#10;    Which is: 16&#10;  actual&#10;    Which is: 15" type=""></failure>
+    </testcase>
+    <testcase name="Case07_Overflow" file="C:/build/demo/test/core/timer_test.cpp" line="110" status="run" result="completed" time="0.026" timestamp="2026-11-27T09:12:33" classname="TimerTest" />
+    <testcase name="Case08_Invalid" file="C:/build/demo/test/core/timer_test.cpp" line="125" status="run" result="completed" time="0.024" timestamp="2026-11-27T09:12:33" classname="TimerTest" />
+    <testcase name="Case09_Boundary" file="C:/build/demo/test/core/timer_test.cpp" line="140" status="run" result="completed" time="0.014" timestamp="2026-11-27T09:12:33" classname="TimerTest">
+      <failure message="C:/build/demo/test/core/timer_test.cpp:142&#10;Expected equality of these values:&#10;  expected&#10;    Which is: 16&#10;  actual&#10;    Which is: 15" type=""></failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="TaskTest" tests="10" failures="0" disabled="0" skipped="0" errors="0" time="0.1">
+    <testcase name="Case01_Overflow" file="C:/build/demo/test/core/task_test.cpp" line="20" status="run" result="completed" time="0.014" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case02_Timeout" file="C:/build/demo/test/core/task_test.cpp" line="35" status="run" result="completed" time="0.044" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case03_Timeout" file="C:/build/demo/test/core/task_test.cpp" line="50" status="run" result="completed" time="0.017" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case04_Timeout" file="C:/build/demo/test/core/task_test.cpp" line="65" status="run" result="completed" time="0.018" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case05_Overflow" file="C:/build/demo/test/core/task_test.cpp" line="80" status="run" result="completed" time="0.04" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case06_Basic" file="C:/build/demo/test/core/task_test.cpp" line="95" status="run" result="completed" time="0.022" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case07_Boundary" file="C:/build/demo/test/core/task_test.cpp" line="110" status="run" result="completed" time="0.027" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case08_Basic" file="C:/build/demo/test/core/task_test.cpp" line="125" status="run" result="completed" time="0.016" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case09_Timeout" file="C:/build/demo/test/core/task_test.cpp" line="140" status="run" result="completed" time="0.03" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+    <testcase name="Case10_Timeout" file="C:/build/demo/test/core/task_test.cpp" line="155" status="run" result="completed" time="0.018" timestamp="2026-11-27T09:12:33" classname="TaskTest" />
+  </testsuite>
+  <testsuite name="CrcTest" tests="4" failures="0" disabled="0" skipped="0" errors="0" time="0.1">
+    <testcase name="Case01_Overflow" file="C:/build/demo/test/util/crc_test.cpp" line="20" status="run" result="completed" time="0.031" timestamp="2026-11-27T09:12:33" classname="CrcTest" />
+    <testcase name="Case02_Basic" file="C:/build/demo/test/util/crc_test.cpp" line="35" status="run" result="completed" time="0.004" timestamp="2026-11-27T09:12:33" classname="CrcTest" />
+    <testcase name="Case03_Overflow" file="C:/build/demo/test/util/crc_test.cpp" line="50" status="run" result="completed" time="0.026" timestamp="2026-11-27T09:12:33" classname="CrcTest" />
+    <testcase name="Case04_Boundary" file="C:/build/demo/test/util/crc_test.cpp" line="65" status="run" result="completed" time="0.048" timestamp="2026-11-27T09:12:33" classname="CrcTest" />
+  </testsuite>
+  <testsuite name="RingBufferTest" tests="5" failures="1" disabled="0" skipped="0" errors="0" time="0.1">
+    <testcase name="Case01_Timeout" file="C:/build/demo/test/util/ringbuffer_test.cpp" line="20" status="run" result="completed" time="0.002" timestamp="2026-11-27T09:12:33" classname="RingBufferTest" />
+    <testcase name="Case02_Overflow" file="C:/build/demo/test/util/ringbuffer_test.cpp" line="35" status="run" result="completed" time="0.018" timestamp="2026-11-27T09:12:33" classname="RingBufferTest">
+      <failure message="C:/build/demo/test/util/ringbuffer_test.cpp:37&#10;Expected equality of these values:&#10;  expected&#10;    Which is: 16&#10;  actual&#10;    Which is: 15" type=""></failure>
+    </testcase>
+    <testcase name="Case03_Basic" file="C:/build/demo/test/util/ringbuffer_test.cpp" line="50" status="run" result="completed" time="0.03" timestamp="2026-11-27T09:12:33" classname="RingBufferTest" />
+    <testcase name="Case04_Overflow" file="C:/build/demo/test/util/ringbuffer_test.cpp" line="65" status="run" result="completed" time="0.019" timestamp="2026-11-27T09:12:33" classname="RingBufferTest" />
+    <testcase name="Case05_Invalid" file="C:/build/demo/test/util/ringbuffer_test.cpp" line="80" status="run" result="completed" time="0.007" timestamp="2026-11-27T09:12:33" classname="RingBufferTest" />
+  </testsuite>
+  <testsuite name="DtcTest" tests="6" failures="0" disabled="0" skipped="0" errors="0" time="0.1">
+    <testcase name="Case01_Overflow" file="C:/build/demo/test/diag/dtc_test.cpp" line="20" status="run" result="completed" time="0.012" timestamp="2026-11-27T09:12:33" classname="DtcTest" />
+    <testcase name="Case02_Boundary" file="C:/build/demo/test/diag/dtc_test.cpp" line="35" status="run" result="skipped" time="0.025" timestamp="2026-11-27T09:12:33" classname="DtcTest">
+      <skipped message="" />
+    </testcase>
+    <testcase name="Case03_Invalid" file="C:/build/demo/test/diag/dtc_test.cpp" line="50" status="run" result="completed" time="0.006" timestamp="2026-11-27T09:12:33" classname="DtcTest" />
+    <testcase name="Case04_Timeout" file="C:/build/demo/test/diag/dtc_test.cpp" line="65" status="run" result="completed" time="0.011" timestamp="2026-11-27T09:12:33" classname="DtcTest" />
+    <testcase name="Case05_Timeout" file="C:/build/demo/test/diag/dtc_test.cpp" line="80" status="run" result="completed" time="0.01" timestamp="2026-11-27T09:12:33" classname="DtcTest" />
+    <testcase name="Case06_Basic" file="C:/build/demo/test/diag/dtc_test.cpp" line="95" status="run" result="completed" time="0.023" timestamp="2026-11-27T09:12:33" classname="DtcTest" />
+  </testsuite>
+</testsuites>
