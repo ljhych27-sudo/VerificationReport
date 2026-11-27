@@ -9,9 +9,10 @@ import datetime as dt
 import os
 import sys
 
-from . import __version__
+from . import __version__, ci
 from .parsers import gtest, llvmcov, cppcheck, lizard
 from .render import write_report
+from .summary import render_markdown
 
 def _samples_dir():
     """소스 체크아웃의 samples/ (설치된 패키지로 실행 시 현재 디렉터리의 samples/)."""
@@ -39,6 +40,11 @@ def build_parser():
                    help="Line 커버리지 합격 기준(%%). 미지정 시 판정 없이 INFO 표시")
     p.add_argument("--fail-on-error", action="store_true",
                    help="총괄 결과가 FAIL 이면 종료 코드 1 반환 (CI 용)")
+    p.add_argument("--report-url", default="", help="리포트가 게시되는 URL (요약 마크다운의 링크로 사용)")
+    p.add_argument("--summary-md", metavar="FILE", help="마크다운 요약 파일 출력 (PR 코멘트 등)")
+    p.add_argument("--no-ci-detect", action="store_true", help="CI 환경변수 자동 감지 끄기")
+    p.add_argument("--no-step-summary", action="store_true",
+                   help="GitHub Actions 에서 $GITHUB_STEP_SUMMARY 에 요약을 쓰지 않음")
     p.add_argument("--demo", action="store_true", help="samples/ 의 예제 데이터로 리포트 생성")
     p.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     return p
@@ -65,14 +71,22 @@ def main(argv=None):
         a.coverage = a.coverage or os.path.join(SAMPLES, "coverage.json")
         a.cppcheck = a.cppcheck or os.path.join(SAMPLES, "cppcheck.xml")
         a.lizard = a.lizard or os.path.join(SAMPLES, "lizard.csv")
-        a.project = a.project or "DemoProject"
-        a.build_number = a.build_number or "1024"
     if not any([a.gtest, a.coverage, a.cppcheck, a.lizard]):
         build_parser().error("입력 파일을 하나 이상 지정하세요 (--gtest/--coverage/--cppcheck/--lizard) 또는 --demo")
 
-    now = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    ctx = {"meta": {"project": a.project, "build_number": a.build_number,
-                    "build_time": a.build_time or now, "branch": a.branch, "commit": a.commit,
+    now = dt.datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %z")
+    det = {} if a.no_ci_detect else (ci.detect() or {})
+    if a.demo and not det:
+        det = {"project": "DemoProject", "build_number": "1024"}
+    ctx = {"meta": {"project": a.project or det.get("project", ""),
+                    "build_number": a.build_number or det.get("build_number", ""),
+                    "build_time": a.build_time or now,
+                    "branch": a.branch or det.get("branch", ""),
+                    "commit": a.commit or det.get("commit", ""),
+                    "commit_url": "" if a.commit else det.get("commit_url", ""),
+                    "ci_provider": det.get("provider", ""), "run_url": det.get("run_url", ""),
+                    "pr_number": det.get("pr_number", ""), "pr_url": det.get("pr_url", ""),
+                    "report_url": a.report_url,
                     "generated": now, "cov_threshold": a.cov_threshold}}
 
     rows = lizard.read_rows(a.lizard) if a.lizard else None
@@ -88,6 +102,15 @@ def main(argv=None):
 
     index = write_report(ctx, a.out)
     print(f"[VERReport] 총괄 결과: {ctx['status']['overall']}  ->  {os.path.abspath(index)}")
+
+    md = render_markdown(ctx, a.report_url)
+    if a.summary_md:
+        with open(a.summary_md, "w", encoding="utf-8") as f:
+            f.write(md)
+    step = os.environ.get("GITHUB_STEP_SUMMARY")
+    if step and not a.no_step_summary and not a.no_ci_detect:
+        with open(step, "a", encoding="utf-8") as f:
+            f.write(md + "\n")
     if a.fail_on_error and ctx["status"]["overall"] == "FAIL":
         return 1
     return 0

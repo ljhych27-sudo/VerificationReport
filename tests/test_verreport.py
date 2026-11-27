@@ -4,7 +4,10 @@ import sys
 import tempfile
 import unittest
 
-from verreport import cli
+import json
+from unittest import mock
+
+from verreport import cli, ci
 from verreport.parsers import gtest, llvmcov, cppcheck, lizard
 from verreport.util import relativize, module_of
 
@@ -61,7 +64,7 @@ class ParserTest(unittest.TestCase):
 class EndToEndTest(unittest.TestCase):
     def test_demo_report(self):
         with tempfile.TemporaryDirectory() as d:
-            rc = cli.main(["--demo", "-o", d, "--build-time", "2026-01-02 03:04:05"])
+            rc = cli.main(["--demo", "-o", d, "--build-time", "2026-01-02 03:04:05", "--no-ci-detect"])
             self.assertEqual(rc, 0)
             for f in ("index.html", "gtest.html", "coverage.html", "cppcheck.html", "lizard.html"):
                 self.assertTrue(os.path.exists(os.path.join(d, f)))
@@ -72,22 +75,73 @@ class EndToEndTest(unittest.TestCase):
 
     def test_fail_on_error_exit_code(self):
         with tempfile.TemporaryDirectory() as d:
-            self.assertEqual(cli.main(["--demo", "-o", d, "--fail-on-error"]), 1)
+            self.assertEqual(cli.main(["--demo", "-o", d, "--fail-on-error", "--no-ci-detect"]), 1)
 
     def test_non_utf8_console(self):
         """한글을 표현 못 하는 콘솔(cp1252)에서도 CLI 가 죽지 않아야 한다."""
         root = os.path.dirname(SAMPLES)
         env = dict(os.environ, PYTHONIOENCODING="cp1252", PYTHONUTF8="0")
         with tempfile.TemporaryDirectory() as d:
-            r = subprocess.run([sys.executable, "-m", "verreport", "--demo", "-o", d],
+            r = subprocess.run([sys.executable, "-m", "verreport", "--demo", "-o", d, "--no-ci-detect"],
                                cwd=root, env=env, capture_output=True)
             self.assertEqual(r.returncode, 0, r.stderr.decode("cp1252", "replace"))
 
     def test_single_tool_only(self):
         with tempfile.TemporaryDirectory() as d:
-            cli.main(["--lizard", sample("lizard.csv"), "-o", d])
+            cli.main(["--lizard", sample("lizard.csv"), "-o", d, "--no-ci-detect"])
             html = read(os.path.join(d, "gtest.html"))
             self.assertIn("결과 파일이 지정되지 않았습니다", html)
+
+
+GH_ENV = {"GITHUB_ACTIONS": "true", "GITHUB_REPOSITORY": "acme/firmware", "GITHUB_RUN_ID": "99",
+          "GITHUB_RUN_NUMBER": "42", "GITHUB_RUN_ATTEMPT": "1", "GITHUB_SHA": "m" * 40,
+          "GITHUB_REF_NAME": "7/merge", "GITHUB_HEAD_REF": "feature/x", "GITHUB_SERVER_URL": "https://github.com",
+          "GITHUB_EVENT_NAME": "pull_request"}
+
+
+class CiTest(unittest.TestCase):
+    def test_not_ci(self):
+        self.assertIsNone(ci.detect({}))
+
+    def test_github_pull_request(self):
+        with tempfile.TemporaryDirectory() as d:
+            ev = os.path.join(d, "event.json")
+            with open(ev, "w", encoding="utf-8") as f:
+                json.dump({"pull_request": {"number": 7, "html_url": "https://github.com/acme/firmware/pull/7",
+                                            "head": {"sha": "h" * 40}}}, f)
+            info = ci.detect(dict(GH_ENV, GITHUB_EVENT_PATH=ev))
+        self.assertEqual(info["build_number"], "42")
+        self.assertEqual(info["branch"], "feature/x")
+        self.assertEqual(info["commit"], "h" * 40)  # 머지 커밋이 아닌 PR head
+        self.assertEqual(info["pr_number"], "7")
+        self.assertEqual(info["run_url"], "https://github.com/acme/firmware/actions/runs/99")
+        self.assertEqual(info["project"], "firmware")
+
+    def test_jenkins_and_gitlab(self):
+        j = ci.detect({"JENKINS_URL": "x", "BUILD_NUMBER": "5", "GIT_BRANCH": "origin/dev", "BUILD_URL": "u"})
+        self.assertEqual((j["build_number"], j["branch"], j["run_url"]), ("5", "dev", "u"))
+        g = ci.detect({"GITLAB_CI": "true", "CI_PIPELINE_IID": "3", "CI_COMMIT_REF_NAME": "main"})
+        self.assertEqual((g["provider"], g["build_number"]), ("GitLab CI", "3"))
+
+    def test_cli_in_github_actions(self):
+        with tempfile.TemporaryDirectory() as d:
+            step = os.path.join(d, "step.md")
+            env = dict(GH_ENV, GITHUB_STEP_SUMMARY=step, GITHUB_EVENT_NAME="push", GITHUB_HEAD_REF="",
+                       GITHUB_REF_NAME="main")
+            with mock.patch.dict(os.environ, env, clear=False):
+                os.environ.pop("GITHUB_EVENT_PATH", None)
+                cli.main(["--demo", "-o", os.path.join(d, "r"), "--report-url", "https://acme.github.io/r/",
+                          "--summary-md", os.path.join(d, "s.md")])
+            idx = read(os.path.join(d, "r", "index.html"))
+            self.assertIn("https://github.com/acme/firmware/actions/runs/99", idx)
+            self.assertIn(">#42</a>", idx)
+            self.assertIn("firmware", idx)
+            md = read(step)
+            self.assertEqual(md.strip(), read(os.path.join(d, "s.md")).strip())
+            self.assertIn("<!-- verreport-summary -->", md)
+            self.assertIn("[전체 리포트 보기](https://acme.github.io/r/)", md)
+            self.assertIn("| Google Test | ❌ FAIL |", md)
+            self.assertIn("실패한 테스트", md)
 
 
 if __name__ == "__main__":

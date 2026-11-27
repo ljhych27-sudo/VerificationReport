@@ -11,7 +11,8 @@ permissions:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # main 빌드(Pages 배포)는 중간에 취소하지 않고, PR 빌드만 새 커밋이 오면 취소
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:
@@ -41,12 +42,17 @@ jobs:
         run: |
           python -m pip install .
           verreport --version
-          verreport --demo -o report
+          verreport --demo -o report --no-ci-detect
 
-  demo-report:
-    name: demo report artifact
+  report:
+    name: VERReport
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write   # PR 코멘트
+    env:
+      IS_MAIN: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -54,15 +60,56 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Generate demo report
+      - name: Configure Pages
+        id: pages
+        if: env.IS_MAIN == 'true'
+        uses: actions/configure-pages@v5
+
+      # 이 저장소에는 C/C++ 대상 코드가 없으므로 samples/ 데이터(--demo)로 리포트를 만든다.
+      # 실제 프로젝트에서는 --demo 대신 --gtest/--coverage/--cppcheck/--lizard 를 지정한다.
+      # 빌드 번호·브랜치·커밋·CI 링크는 GitHub Actions 환경변수에서 자동 감지되고,
+      # 요약은 $GITHUB_STEP_SUMMARY(실행 화면의 Summary)에 자동으로 기록된다.
+      - name: Generate report
+        env:
+          REPORT_URL: ${{ env.IS_MAIN == 'true' && steps.pages.outputs.base_url || format('{0}/{1}/actions/runs/{2}#artifacts', github.server_url, github.repository, github.run_id) }}
         run: >
           python -m verreport --demo -o report
-          --build-number "${{ github.run_number }}"
-          --branch "${{ github.head_ref || github.ref_name }}"
-          --commit "${{ github.sha }}"
+          --summary-md summary.md
+          --report-url "$REPORT_URL"
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: verreport-demo
+          name: verreport
           path: report/
           retention-days: 14
+
+      # 포크에서 온 PR 은 토큰이 읽기 전용이라 코멘트를 쓸 수 없으므로 건너뛴다.
+      - name: Comment on PR
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body-file summary.md --edit-last --create-if-none
+
+      - name: Upload Pages artifact
+        if: env.IS_MAIN == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: report/
+
+  deploy-pages:
+    name: Deploy report to GitHub Pages
+    needs: report
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@v4
