@@ -44,7 +44,18 @@ def build_parser():
     return p
 
 
+def _safe_console():
+    """cp1252 등 한글을 표현 못 하는 콘솔/파이프(CI 등)에서 UnicodeEncodeError 로 죽지 않도록 한다."""
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(errors="replace")
+            except (ValueError, OSError):
+                pass
+
+
 def main(argv=None):
+    _safe_console()
     a = build_parser().parse_args(argv)
     if a.demo:
         SAMPLES = _samples_dir()
