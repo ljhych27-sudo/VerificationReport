@@ -234,12 +234,31 @@ def statuses(ctx):
 
 
 # ---------------------------------------------------------------- 페이지 골격
+def link(text, url):
+    return f'<a href="{e(url)}" target="_blank" rel="noopener">{e(text)}</a>' if url else e(text)
+
+
+def header_meta(m):
+    """헤더에 표시할 (라벨, HTML) 목록. CI 정보가 있으면 링크로 연결한다."""
+    commit = m.get("commit", "")
+    build = m.get("build_number", "")
+    if build and m.get("run_url"):
+        build = link(f"#{build}", m["run_url"])
+    else:
+        build = e(build)
+    return [("프로젝트", e(m.get("project"))),
+            ("빌드", build),
+            ("빌드 일시", e(m.get("build_time"))),
+            ("브랜치", e(m.get("branch"))),
+            ("커밋", link(commit[:7] if len(commit) == 40 else commit, m.get("commit_url")) if commit else ""),
+            ("PR", link(f"#{m['pr_number']}", m.get("pr_url")) if m.get("pr_number") else ""),
+            ("CI", link(m["ci_provider"] + " 실행 보기", m.get("run_url")) if m.get("ci_provider") else "")]
+
+
 def page(ctx, active, title, body):
     m = ctx["meta"]
     nav = "".join(f'<a href="{f}" class="{"active" if f == active else ""}">{e(t)}</a>' for f, t in PAGES)
-    meta = [("프로젝트", m.get("project")), ("빌드", m.get("build_number")),
-            ("빌드 일시", m.get("build_time")), ("브랜치", m.get("branch")), ("커밋", m.get("commit"))]
-    meta_html = "".join(f"<span>{e(k)}: <b>{e(v)}</b></span>" for k, v in meta if v)
+    meta_html = "".join(f"<span>{e(k)}: <b>{v}</b></span>" for k, v in header_meta(m) if v)
     return f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)} - VERReport</title><style>{CSS}</style></head>

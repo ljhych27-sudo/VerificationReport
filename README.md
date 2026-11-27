@@ -77,6 +77,10 @@ python -m verreport \
 | `--max-length N` | 함수 라인 수 기준 (초과 시 위반) | 80 |
 | `--cov-threshold P` | Line 커버리지 합격 기준(%) | 미지정 → INFO |
 | `--fail-on-error` | 총괄 결과 FAIL이면 종료 코드 1 | off |
+| `--summary-md FILE` | 마크다운 요약 파일 출력 | - |
+| `--report-url URL` | 요약에 넣을 "전체 리포트 보기" 링크 | - |
+| `--no-ci-detect` | CI 환경변수 자동 감지 끄기 | off |
+| `--no-step-summary` | `$GITHUB_STEP_SUMMARY` 기록 끄기 | off |
 
 입력은 일부만 지정해도 되며, 지정하지 않은 도구는 "결과 없음"으로 표시됩니다.
 `pip install .` 후에는 `verreport ...` 명령으로도 실행할 수 있습니다.
@@ -92,6 +96,36 @@ python -m verreport \
 
 총괄 결과는 FAIL > WARN > PASS 순으로 가장 나쁜 결과를 따릅니다.
 
+## CI 연동
+
+| 기능 | 동작 |
+|---|---|
+| CI 정보 자동 표시 | GitHub Actions / GitLab CI / Jenkins 환경변수에서 빌드 번호·브랜치·커밋·PR·실행 링크를 읽어 리포트 헤더에 표시합니다. 명령행 옵션을 주면 옵션이 우선합니다. (`--no-ci-detect`로 끄기) |
+| Actions 실행 요약 | GitHub Actions에서 실행하면 판정과 주요 수치, 실패 테스트, CPPCheck error, Lizard 상위 위반을 `$GITHUB_STEP_SUMMARY`에 자동 기록합니다. (`--no-step-summary`로 끄기) |
+| 요약 마크다운 | `--summary-md FILE`로 같은 요약을 파일로 저장합니다. PR 코멘트 등에 사용하고, `--report-url`로 넘긴 주소가 "전체 리포트 보기" 링크가 됩니다. |
+
+이 저장소의 [`.github/workflows/ci.yml`](.github/workflows/ci.yml)은 예제 데이터(`--demo`)로 위 기능을 모두 사용합니다.
+
+- **PR:** 요약을 PR 코멘트로 작성합니다. 새 커밋이 오면 같은 코멘트를 갱신합니다. 전체 리포트는 실행 화면의 `verreport` 아티팩트로 받을 수 있습니다.
+- **main:** 리포트를 GitHub Pages에 배포합니다 → https://ljhych27-sudo.github.io/VerificationReport/
+
+### 실제 C/C++ 프로젝트에 적용하기
+
+```yaml
+      - name: Verification report
+        run: |
+          pip install git+https://github.com/ljhych27-sudo/VerificationReport.git
+          verreport --gtest build/test-results/*.xml \
+                    --coverage build/coverage.json \
+                    --cppcheck build/cppcheck.xml \
+                    --lizard build/lizard.csv \
+                    --strip-prefix "$GITHUB_WORKSPACE/src" \
+                    --summary-md summary.md -o report --fail-on-error
+```
+
+`--fail-on-error`를 주면 총괄 결과가 FAIL일 때 job이 실패합니다. 이 경우 뒤의
+업로드/코멘트 단계에는 `if: always()`를 붙여야 실패한 빌드에서도 리포트가 남습니다.
+
 ## 개발
 
 ```bash
@@ -103,6 +137,8 @@ python -m unittest discover -s tests   # 테스트
 verreport/
   cli.py            명령행 진입점
   render.py         HTML/차트(SVG·CSS) 렌더링
+  summary.py        마크다운 요약 (Job Summary / PR 코멘트)
+  ci.py             CI 환경 자동 감지
   util.py           경로 정규화, 모듈 판정
   parsers/          gtest.py, llvmcov.py, cppcheck.py, lizard.py
 samples/            예제 입력 + 생성 스크립트
